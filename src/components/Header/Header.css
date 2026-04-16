@@ -1,0 +1,371 @@
+/* ─────────────────────────────────────────────────────────────────
+   Sterling Gate Kinetic Navigation — Eyecon Optics
+   Font preserved: WT Monarch Nova Roman
+───────────────────────────────────────────────────────────────── */
+
+/* ── Fixed header strip ────────────────────────────────────────── */
+.site-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.header {
+  background: transparent;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(31, 27, 22, 0.08);
+}
+
+/* ── Container ─────────────────────────────────────────────────── */
+.container.is--full {
+  width: 100%;
+  max-width: var(--size-container, 1400px);
+  margin: 0 auto;
+  padding-left: var(--container-padding, 2em);
+  padding-right: var(--container-padding, 2em);
+}
+
+/* ── Nav Row ───────────────────────────────────────────────────── */
+.nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.25rem;
+  gap: var(--gap, 1.5em);
+}
+
+/* ── Logo ──────────────────────────────────────────────────────── */
+.nav-logo-row {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #1f1b16;
+}
+
+.nav-brand-text {
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: clamp(1rem, 2.2vw, 1.55rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #1f1b16;
+}
+
+.w-inline-block {
+  display: inline-flex;
+}
+
+/* ── Right side of nav row ─────────────────────────────────────── */
+.nav-row__right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* ── "click me" / toggle label ─────────────────────────────────── */
+.nav-toggle-label {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .nav-toggle-label {
+    display: block;
+  }
+}
+
+.toggle-text {
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(31, 27, 22, 0.55);
+  transition: color 220ms ease;
+}
+
+.nav-toggle-label:hover .toggle-text {
+  color: #1f1b16;
+}
+
+/* ── Menu / Close button ───────────────────────────────────────── */
+.nav-close-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(31, 27, 22, 0.14);
+  border-radius: 999px;
+  background: transparent;
+  color: #1f1b16;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background 220ms ease, border-color 220ms ease;
+}
+
+.nav-close-btn:hover {
+  background: rgba(31, 27, 22, 0.05);
+  border-color: rgba(31, 27, 22, 0.25);
+}
+
+/* Scrolling text container — GSAP slides "Menu" up, "Close" takes its place */
+.menu-button-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 1em;
+  line-height: 1;
+  
+}
+
+.p-large {
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 2;
+  flex-shrink: 0;
+}
+
+/* + icon */
+.icon-wrap {
+  width: 13px;
+  height: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-button-icon {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* ── Fullscreen overlay container ──────────────────────────────── */
+.fullscreen-menu-container {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+}
+
+/* ── Nav overlay wrapper ───────────────────────────────────────── */
+.nav-overlay-wrapper {
+  display: none;
+  position: absolute;
+  inset: 0;
+}
+
+.nav-overlay-wrapper[data-nav="open"] {
+  pointer-events: auto;
+}
+
+/* ── Overlay (dark scrim behind panel) ─────────────────────────── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 16, 12, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+/* ── Menu content panel ────────────────────────────────────────── */
+.menu-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(90vw, 560px);
+  height: 100%;
+  overflow: hidden;
+  /* GSAP sets xPercent so no CSS transform needed initially */
+}
+
+/* ── Background stack (3 staggered panels) ─────────────────────── */
+.menu-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.backdrop-layer {
+  position: absolute;
+  inset: 0;
+  background: #f7f2ea;
+}
+
+.backdrop-layer.first {
+  background: rgba(216, 197, 170, 0.55);
+}
+
+.backdrop-layer.second {
+  background: rgba(239, 229, 214, 0.78);
+}
+
+/* ── Ambient SVG shapes ────────────────────────────────────────── */
+.ambient-background-shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.bg-shape.active {
+  opacity: 1;
+}
+
+.shape-element {
+  opacity: 0;
+  transform-origin: center;
+}
+
+/* ── Menu content wrapper (scrollable inner) ───────────────────── */
+.menu-content-wrapper {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5.5rem 2.5rem 2.5rem;
+  overflow-y: auto;
+  gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .menu-content-wrapper {
+    padding: 6rem 3rem 3rem;
+  }
+}
+
+/* ── Menu list ─────────────────────────────────────────────────── */
+.menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-list-item {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(31, 27, 22, 0.07);
+}
+
+.menu-list-item:first-child {
+  border-top: 1px solid rgba(31, 27, 22, 0.07);
+}
+
+/* ── Nav link ──────────────────────────────────────────────────── */
+.nav-link {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 1rem 0;
+  text-decoration: none;
+  color: #1f1b16;
+  overflow: hidden;
+}
+
+.nav-link-text {
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.35s var(--cubic-default, cubic-bezier(0.65, 0.05, 0, 1)),
+    color 220ms ease;
+}
+
+.nav-link:hover .nav-link-text {
+  transform: translateX(0.6rem);
+  color: #8d7a63;
+}
+
+.nav-link-hover-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(141, 122, 99, 0.07);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s var(--cubic-default, cubic-bezier(0.65, 0.05, 0, 1));
+}
+
+.nav-link:hover .nav-link-hover-bg {
+  transform: scaleX(1);
+}
+
+/* ── Appointment card ──────────────────────────────────────────── */
+.menu-appointment-card {
+  margin-top: auto;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid rgba(31, 27, 22, 0.08);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.menu-appointment-label {
+  margin: 0;
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #8d7a63;
+}
+
+.menu-appointment-copy {
+  margin: 0.75rem 0 0;
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  color: rgba(31, 27, 22, 0.68);
+}
+
+.menu-appointment-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  font-family: "WT Monarch Nova Roman", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #1f1b16;
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.menu-appointment-link:hover {
+  color: #8d7a63;
+}
+
+/* ── Push page content below fixed header ──────────────────────── */
+main {
+  padding-top: 0;
+}
+
+/* ── Reduce motion ─────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+  .nav-close-btn,
+  .nav-link-text,
+  .nav-link-hover-bg {
+    transition: none !important;
+  }
+}

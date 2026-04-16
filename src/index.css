@@ -1,0 +1,183 @@
+@import url(https://db.onlinewebfonts.com/c/5e4df315bceb4e9c81342f0cfbc7dbf8?family=WT+Monarch+Nova+Roman);
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f7f2ea;
+  --color-cream: #efe5d6;
+  --color-sand: #d8c5aa;
+  --color-stone: #8d7a63;
+  --color-ink: #1f1b16;
+}
+
+:root {
+  color: var(--color-ink);
+  background: #ffffff;
+  font-family: "WT Monarch Nova Roman";
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* ── Layout tokens (used by kinetic header) ── */
+  --size-container:    1400px;
+  --container-padding: 2em;
+  --section-padding:   4em;
+  --gap:               1.5em;
+  --cubic-default:     cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #ffffff;
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    cursor: text !important;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img {
+  display: block;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Hide injected extension container that creates extra bottom gap */
+main#mentoriai-extension.preplace-d-extension {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+   
+}
+
+ 
+.section-shell {
+  width: min(100% - 2.5rem, 80rem);
+  margin: 0 auto;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.section-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--color-stone);
+}
+
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 999px;
+  padding: 1rem 1.75rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.pill-button:hover {
+  transform: translateY(-1px);
+}
+
+.pill-button--dark {
+  background: var(--color-ink);
+  color: var(--color-ivory);
+}
+
+.pill-button--dark:hover {
+  background: #2b251f;
+}
+
+.pill-button--light {
+  border: 1px solid rgba(31, 27, 22, 0.1);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--color-ink);
+}
+
+.pill-button--light:hover {
+  border-color: rgba(31, 27, 22, 0.18);
+  background: rgba(255, 255, 255, 1);
+}
+
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  transition: color 220ms ease;
+}
+
+.inline-link:hover {
+  color: var(--color-stone);
+}
+
+@media (min-width: 640px) {
+  .section-shell {
+    width: min(100% - 4rem, 80rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-shell {
+    width: min(100% - 5rem, 80rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .pill-button {
+    transition: none;
+  }
+
+  .pill-button:hover {
+    transform: none;
+  }
+}

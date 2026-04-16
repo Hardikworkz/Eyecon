@@ -1,0 +1,304 @@
+ 
+.lounge-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 6;
+  margin-top: -12rem;
+}
+
+.lounge-header {
+  text-align: center;
+  padding-top: 4%;
+  margin: 100px auto 60px auto; 
+  background: #000;
+  width: 100%;
+  max-width: 1266px;
+  height: 340px;
+  border-radius: 100%;
+  color: #c8eeff;
+  position: relative;
+  z-index: 7;
+  
+}
+
+.lounge-header .title {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: white;
+}
+.lounge-header .subtitle {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: white;
+}
+
+
+
+/* --- GRID SETUP --- */
+.categories-section {
+  position: relative;
+  z-index: 7;
+  width: 100%;
+  padding: 60px 20px;
+  margin-top: -15rem; /* Overlaps the black header circle without creating extra page gap */
+}
+
+.categories-wrapper {
+  display: flex;
+  justify-content: center; /* Centers the cards horizontally */
+  align-items: flex-start;  
+  gap: 25px;
+  width: 100%;
+  max-width: 1400px; /* Limits the max spread of the grid */
+  margin: 0 auto;    /* Centers the wrapper itself */
+}
+
+/* --- DYNAMIC CARD STYLING --- */
+.category-card {
+  position: relative;
+  display: block; 
+  /* FIXED: Removed 4650px. Using 100% with a max-width makes it fluid and centered */
+  width: 100%; 
+  max-width: 450px;  
+  height: 420px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  text-decoration: none;
+  overflow: hidden; 
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Hover: Thicker border without layout shifts, slight lift */
+.category-card:hover {
+  box-shadow: 0 0 0 1px #000, 0 20px 40px rgba(0, 0, 0, 0.15); 
+  border-color: #000;
+  transform: translateY(-8px);
+}
+
+/* --- TEXT & CONTENT --- */
+.cat-title {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 540;
+  margin: 0;
+  color: #000;
+  transition: color 0.4s;
+  z-index: 2;
+}
+
+.category-card:hover .cat-title {
+  color: #4a80f5;
+}
+
+.cat-count {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #000; 
+  z-index: 2;
+}
+
+/* --- HALF-CUT IMAGE --- */
+.cat-img-wrap {
+  position: absolute;
+  top: 50%;
+  right: -50%; 
+  width: 100%; 
+  height: 100%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cat-img-wrap img {
+  transform: scale(1.7);
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Hover: Image tilts */
+.category-card:hover .cat-img-wrap img {
+  transform: scale(1.8) rotate(-12deg) translateX(-10%); 
+}
+
+/* --- ARROW BOX --- */
+.cat-arrow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 46px;
+  height: 46px;
+  background-color: #c00026; 
+  border-radius: 0 6px 0 0; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  z-index: 3;
+}
+
+/* Hover: Arrow Rotate/Scale */
+.cat-arrow svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.category-card:hover .cat-arrow svg {
+  transform: scale(1.2) rotate(15deg); 
+}
+
+.category-card:hover .cat-arrow {
+  background-color: #000;
+  color: #fff;
+}
+
+/* --- RESPONSIVENESS --- */
+
+@media (max-width: 1100px) {
+   .lounge-header {
+    /* FIXED: Using auto left/right margins to center the header */
+    margin: 40px auto 0 auto; 
+    width: 90%;
+    aspect-ratio: 1.5 / 1; 
+    border-radius: 100%;  
+    padding-top: 15vw;
+    z-index: 788;
+  }
+
+  .categories-wrapper {
+    gap: 15px;
+  }
+  .category-card {
+    min-width: 250px;
+  }
+   .categories-section {
+    margin-top: -10vw;  
+     width: 100%;
+  }
+}
+
+ 
+
+@media (max-width: 600px) {
+  .lounge-header {
+    margin: 60px auto 0 auto; 
+    width: 100%;
+    aspect-ratio: 1.5 / 1; 
+    border-radius: 100%;  
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8vw;
+    justify-content: safe;
+  }
+  
+
+  .categories-section {
+    margin-top: 28vw;  
+    width: 100%;
+  }
+
+  .categories-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .category-card {
+    width: 85%;
+    max-width: 400px;
+    height: 400px !important; 
+    margin-top: 0 !important; /* Reset awkward staggered margins on mobile */
+  }
+}
+
+@media (max-width: 768px) {
+  .lounge-header {
+    margin: 60px auto 0 auto; 
+    width: 90%;
+    aspect-ratio: 1.5 / 1; 
+    border-radius: 100%;  
+    height: 200px;
+    display: flex;
+    z-index: 5;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8vw;
+    justify-content: safe;
+  }
+  
+
+  .categories-section {
+    margin-top: -10vw;  
+    width: 100%;
+  }
+
+  .categories-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .category-card {
+    width: 85%;
+    max-width: 400px;
+    height: 400px !important; 
+    margin-top: 0 !important; /* Reset awkward staggered margins on mobile */
+  }
+}
+
+
+@media (max-width: 370px) {
+  .lounge-header {
+    margin: 60px auto 0 auto; 
+    width: 100%;
+    aspect-ratio: 1.5 / 1; 
+    border-radius: 100%;  
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 8vw;
+    justify-content: safe;
+  }
+  .lounge-header .title{
+    font-size: 2rem;
+  }
+  .lounge-header .subtitle{
+    font-size: 2rem;
+  }
+
+  .categories-section {
+    margin-top: 35vw;  
+    width: 100%;
+  }
+
+  .categories-wrapper {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .category-card {
+    width: 85%;
+    max-width: 400px;
+    height: 400px !important; 
+    margin-top: 0 !important; /* Reset awkward staggered margins on mobile */
+  }
+}
