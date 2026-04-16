@@ -1,5 +1,5 @@
 import './App.css'
-import FrameLounge from './components/Framelounge/frameLounge'
+import FrameLounge from './components/Framelounge/FrameLounge'
 import Header from './components/Header/Header'
 import HeroSection from './components/Hero/HeroSection'
 import Brands from './components/Brands/Brands'
