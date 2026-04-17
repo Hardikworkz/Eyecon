@@ -5,7 +5,7 @@ import HeroSection from './components/Hero/HeroSection'
 import Brands from './components/Brands/Brands'
 import SmoothCursor from './components/SmoothCursor/SmoothCursor'
 import AboutSection1 from './components/ui/about-section-1'
-import TestimonialsColumnsSection from './reviews/testimonials-columns-1'
+import TestimonialsColumnsSection from './components/reviews/testimonials-columns-1'
 import ModemAnimatedFooter from './components/ui/modem-animated-footer'
 
 function App() {

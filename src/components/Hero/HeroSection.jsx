@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import './HeroSection.css';
 import hero_img from '../../assets/herosection.jpg';
 
@@ -24,6 +24,7 @@ const products = [
 const HeroSection = () => {
   const [index, setIndex] = useState(0);
   const heroRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
@@ -67,6 +68,29 @@ const HeroSection = () => {
           aria-label="Shop eyewear collections"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
+          whileHover={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  y: -8,
+                  rotate: -3,
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(0, 0, 0, 0.15)",
+                  transition: {
+                    duration: 0.45,
+                    delay: 0,
+                    ease: [0.165, 0.84, 0.44, 1],
+                  },
+                }
+          }
+          whileTap={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  scale: 0.985,
+                  transition: { duration: 0.12, delay: 0 },
+                }
+          }
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >

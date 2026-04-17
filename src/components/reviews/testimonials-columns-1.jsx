@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import "./testimonials-columns-1.css";
-import blob from "../assets/blob-e.webp";
+import blob from "../../assets/blob-e.webp";
 
 const testimonials = [
   {
