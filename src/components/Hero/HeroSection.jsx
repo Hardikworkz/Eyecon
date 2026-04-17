@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import './HeroSection.css';
 import hero_img from '../../assets/herosection.jpg';
+import blob from '../../assets/blob-d.webp';
 
 const products = [
   {
@@ -40,6 +41,7 @@ const HeroSection = () => {
   }, []);
 
   return (
+    <>
     <section className="hero-container" id="hero" ref={heroRef}>
       <div className="hero-background">
         <motion.img src={hero_img} alt="Background" style={{ scale: heroScale }} />
@@ -120,7 +122,13 @@ const HeroSection = () => {
           </div>
         </motion.a>
       </motion.div>
+      
+    
     </section>
+     <motion.div className="bottom-pic">
+                <img src={blob} alt="" />
+       </motion.div>
+    </>
   );
 };
 
